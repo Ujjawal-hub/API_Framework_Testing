@@ -6,7 +6,7 @@ import POJO.response.restfullbooker.Bookingresponse;
 import com.github.javafaker.Faker;
 import com.google.gson.Gson;
 
-public class payloadmanager {
+public class Payloadmanager {
 
 
 // serelialization
