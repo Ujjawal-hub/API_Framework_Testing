@@ -28,7 +28,7 @@ public void verifyingKey(String Key,String Actual){
 
 }
 
-public void verifyingKeynotNull(Integer Key){
+public void verifyingKeynotNull(long Key){
 
         assertThat(Key).isNotNull();
 

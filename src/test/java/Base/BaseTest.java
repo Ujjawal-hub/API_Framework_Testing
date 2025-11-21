@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
 
-    public RequestSpecification requestSpecification;
+
     public Response response;
     public ValidatableResponse validatableResponse;
 
@@ -23,8 +23,14 @@ public class BaseTest {
 
     assertactions = new Assertactions();
     payloadmanager = new Payloadmanager();
-    requestSpecification = RestAssured.given().baseUri(API_constants.Base_URL);
-    requestSpecification.contentType("application/json").log().all();
+
+
+}
+
+public RequestSpecification setup2(){
+
+    return RestAssured.given().baseUri(API_constants.Base_URL).contentType("application/json").log().all();
+
 
 }
 
