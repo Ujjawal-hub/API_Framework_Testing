@@ -1,7 +1,9 @@
 package modules;
 
+import POJO.request.resfullbooker.Auth;
 import POJO.request.resfullbooker.Bookingdates;
 import POJO.request.resfullbooker.Bookingrequest;
+import POJO.response.restfullbooker.Authresponse;
 import POJO.response.restfullbooker.Bookingresponse;
 import com.github.javafaker.Faker;
 import com.google.gson.Gson;
@@ -106,7 +108,26 @@ public String sendbookingreques2(){
  }
 
 
+ public String sendTokenrequest(){
 
+     Auth auth = new Auth();
+     auth.setUsername("admin");
+     auth.setPassword("password123");
+
+     Gson gson = new Gson();
+
+     return gson.toJson(auth);
+
+ }
+
+public Authresponse tokenreciver(String response){
+
+      Gson gson = new Gson();
+
+       Authresponse data = gson.fromJson(response,Authresponse.class);
+
+ return data;
+}
 
 
 }

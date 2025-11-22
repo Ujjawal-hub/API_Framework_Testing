@@ -1,6 +1,7 @@
 package tests.restfullbooker.Crud;
 
 import Base.BaseTest;
+import POJO.response.restfullbooker.Authresponse;
 import POJO.response.restfullbooker.Bookingresponse;
 import endpoints.API_constants;
 import io.restassured.RestAssured;
@@ -119,7 +120,7 @@ public class Testcase_create_booking extends BaseTest {
     }
 
     @Test
-    public void create_booking_negative_4(){
+    public void create_booking_negative_4() {
 
         RequestSpecification requestSpecification = setup2();
         requestSpecification.baseUri(API_constants.App_Vwo_login_URL);
@@ -132,11 +133,24 @@ public class Testcase_create_booking extends BaseTest {
         validatableResponse = response.then().log().all();
         validatableResponse.statusCode(404);
 
-
-
-
-
     }
+        @Test
+        public void gettokentestcase() {
+
+            RequestSpecification requestSpecification = setup2();
+            requestSpecification.basePath(API_constants.Auth_URL).body(payloadmanager.sendTokenrequest());
+
+            response = requestSpecification.when().log().all().post();
+
+            response.then().log().all();
+            Authresponse data = payloadmanager.tokenreciver(response.asString());
+
+            assertactions.verifyingKeynotNull(data.getToken());
+            assertactions.verifystatuscode(response, 200);
+
+
+        }
+
 
 
 }
