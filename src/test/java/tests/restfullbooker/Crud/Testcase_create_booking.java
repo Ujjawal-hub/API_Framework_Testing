@@ -1,6 +1,7 @@
 package tests.restfullbooker.Crud;
 
 import Base.BaseTest;
+import POJO.response.restfullbooker.Authinvalidresponse;
 import POJO.response.restfullbooker.Authresponse;
 import POJO.response.restfullbooker.Bookingresponse;
 import endpoints.API_constants;
@@ -15,7 +16,7 @@ public class Testcase_create_booking extends BaseTest {
     @Test(groups = {"reg"}, priority = 1)
     public void create_booking_positive_1() {
 
-        RequestSpecification requestSpecification = setup2();
+        setup2();
 
 
         requestSpecification.basePath(API_constants.Create_Update_Booking_URL);
@@ -32,7 +33,7 @@ public class Testcase_create_booking extends BaseTest {
     @Test
     public void create_booking_positive_2() {
 
-        RequestSpecification requestSpecification = setup2();
+     setup2();
 
         requestSpecification.basePath(API_constants.Create_Update_Booking_URL);
         requestSpecification.body(payloadmanager.sendbookingreques2());
@@ -50,7 +51,7 @@ public class Testcase_create_booking extends BaseTest {
     @Test
     public void create_booking_positive_3() {
 
-        RequestSpecification requestSpecification = setup2();
+        setup2();
 
         requestSpecification.basePath(API_constants.Create_Update_Booking_URL);
         requestSpecification.body(payloadmanager.sendbookingreques3());
@@ -68,7 +69,7 @@ public class Testcase_create_booking extends BaseTest {
     @Test
     public void create_booking_negative_1() {
 
-        RequestSpecification requestSpecification = setup2();
+       setup2();
 
         requestSpecification.basePath(API_constants.Create_Update_Booking_URL);
         requestSpecification.contentType("{ }");
@@ -84,7 +85,7 @@ public class Testcase_create_booking extends BaseTest {
     @Test
     public void create_booking_negative_2(){
 
-        RequestSpecification requestSpecification = setup2();
+       setup2();
 
         requestSpecification.basePath(API_constants.Create_Update_Booking_URL);
         requestSpecification.body("{}");
@@ -102,7 +103,7 @@ public class Testcase_create_booking extends BaseTest {
 
     @Test
     public void create_booking_negative_3(){
-        RequestSpecification requestSpecification = setup2();
+      setup2();
 
         requestSpecification.basePath(API_constants.Create_Update_Booking_URL);
         requestSpecification.contentType("application/HTML");
@@ -122,7 +123,7 @@ public class Testcase_create_booking extends BaseTest {
     @Test
     public void create_booking_negative_4() {
 
-        RequestSpecification requestSpecification = setup2();
+ setup2();
         requestSpecification.baseUri(API_constants.App_Vwo_login_URL);
         requestSpecification.basePath(API_constants.Create_Update_Booking_URL);
 
@@ -134,22 +135,6 @@ public class Testcase_create_booking extends BaseTest {
         validatableResponse.statusCode(404);
 
     }
-        @Test
-        public void gettokentestcase() {
-
-            RequestSpecification requestSpecification = setup2();
-            requestSpecification.basePath(API_constants.Auth_URL).body(payloadmanager.sendTokenrequest());
-
-            response = requestSpecification.when().log().all().post();
-
-            response.then().log().all();
-            Authresponse data = payloadmanager.tokenreciver(response.asString());
-
-            assertactions.verifyingKeynotNull(data.getToken());
-            assertactions.verifystatuscode(response, 200);
-
-
-        }
 
 
 

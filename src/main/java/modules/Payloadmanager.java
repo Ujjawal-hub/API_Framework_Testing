@@ -3,6 +3,7 @@ package modules;
 import POJO.request.resfullbooker.Auth;
 import POJO.request.resfullbooker.Bookingdates;
 import POJO.request.resfullbooker.Bookingrequest;
+import POJO.response.restfullbooker.Authinvalidresponse;
 import POJO.response.restfullbooker.Authresponse;
 import POJO.response.restfullbooker.Bookingresponse;
 import com.github.javafaker.Faker;
@@ -129,7 +130,16 @@ public Authresponse tokenreciver(String response){
  return data;
 }
 
+public Authinvalidresponse invalidtokenresponse(String response){
 
+      Gson gson = new Gson();
+
+      Authinvalidresponse data = gson.fromJson(response,Authinvalidresponse.class);
+
+      return data;
+
+
+}
 }
 
 
