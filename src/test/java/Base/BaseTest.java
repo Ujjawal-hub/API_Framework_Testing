@@ -1,6 +1,7 @@
 package Base;
 
 import Assert.Assertactions;
+import POJO.response.restfullbooker.Authresponse;
 import endpoints.API_constants;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -50,5 +51,19 @@ public void setup3(){
 
 }
 
+
+public String set_get_token(){
+
+        setup2();
+
+        requestSpecification.basePath(API_constants.Auth_URL).body(payloadmanager.sendTokenrequest());
+
+        response = requestSpecification.when().post();
+
+    Authresponse data = payloadmanager.tokenreciver(response.asString());
+
+    return data.getToken();
+
+}
 
 }
